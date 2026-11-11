@@ -2,9 +2,11 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import type { Booking } from "../../types";
+
 const bookings = ref<Booking[]>([]),
   loading = ref(true),
   error = ref("");
+
 async function load() {
   loading.value = true;
   try {
@@ -16,6 +18,7 @@ async function load() {
     loading.value = false;
   }
 }
+
 async function cancel(b: Booking) {
   if (!confirm(`Cancel booking #${b.id}?`)) return;
   try {
@@ -25,7 +28,9 @@ async function cancel(b: Booking) {
     error.value = e.response?.data?.message || "Cancellation failed";
   }
 }
+
 onMounted(load);
+
 </script>
 <template>
   <main class="min-h-screen bg-slate-50">

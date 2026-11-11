@@ -6,19 +6,23 @@ import type { Hotel } from "../../types";
 
 const props = defineProps<{ initialHotels: Hotel[]; initialSearch: string; providerError: string | null }>();
 const hotels = ref(props.initialHotels),
+
   search = ref(props.initialSearch || ""),
   city = ref(""),
   min = ref<number | null>(null),
   max = ref<number | null>(null);
+
 const loading = ref(false),
   error = ref(props.providerError || ""),
   success = ref(""),
   selected = ref<Hotel | null>(null),
   modal = ref(false),
   saving = ref(false);
+
 const form = ref({ guest_name: "", guest_email: "", check_in: "", check_out: "", guests: 1, notes: "" });
 const cities = computed(() => [...new Set(hotels.value.map((h) => h.city))]);
 const today = new Date().toISOString().slice(0, 10);
+
 async function load() {
   loading.value = true;
   error.value = "";
@@ -39,11 +43,13 @@ async function load() {
     loading.value = false;
   }
 }
+
 function book(h: Hotel) {
   selected.value = h;
   modal.value = true;
   success.value = "";
 }
+
 async function submit() {
   if (!selected.value) return;
   saving.value = true;
