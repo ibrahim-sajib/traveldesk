@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif
+}
+
+.field {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: .6rem;
+    padding: .7rem .85rem;
+    background: white
+}
+
+.field:focus {
+    outline: 2px solid rgb(37 99 235 / 20%);
+    border-color: #2563eb
+}
+
+.form-label {
+    display: block;
+    font-size: .875rem;
+    font-weight: 600;
+    color: #334155
+}
