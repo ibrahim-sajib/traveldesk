@@ -11,10 +11,18 @@ use Illuminate\Support\Facades\DB;
 class BookingController extends Controller
 {
 
+
     public function index()
     {
-        return response()->json(['data' => Booking::latest()->paginate(10)]);
+        $bookings = Booking::query()
+            ->orderByDesc('id')
+            ->cursorPaginate(10);
+
+        return response()->json([
+            'data' => $bookings,
+        ]);
     }
+
     public function store(StoreBookingRequest $request, HotelApiService $hotels)
     {
         $data = $request->validated();

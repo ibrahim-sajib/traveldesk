@@ -31,6 +31,14 @@ class HotelApiService
     private function map(array $row): array
     {
         $id = (int)($row['id'] ?? 0);
-        return ['id' => $id, 'name' => ucwords($row['title'] ?? 'Unknown hotel'), 'description' => ucfirst($row['body'] ?? ''), 'city' => ['Dhaka', 'Cox’s Bazar', 'Sylhet', 'Chattogram', 'Rajshahi'][$id % 5], 'price_per_night' => 2500 + (($id * 375) % 6500), 'rating' => number_format(3.5 + (($id % 15) / 10), 1), 'image' => 'https://picsum.photos/seed/traveldesk-' . $id . '/900/600'];
+        return [
+            'id' => $id,
+            'name' => ucwords($row['title'] ?? 'Unknown hotel'),
+            'description' => ucfirst($row['body'] ?? ''),
+            'city' => ['Dhaka', 'Cox’s Bazar', 'Sylhet', 'Chattogram', 'Rajshahi'][$id % 5],
+            'price_per_night' => 2500 + (($id * 375) % 6500),
+            'rating' => number_format(3.5 + (($id % 15) / 10), 1),
+            'image' => 'https://picsum.photos/seed/traveldesk-' . $id . '/900/600'
+        ];
     }
 }
